@@ -9,10 +9,10 @@ export function GuessesList(props) {
     let nbMoves = props.moves.length
     let nbEmptyMoves = 12 - nbMoves - 1
 
-    console.log('from guesses list',props.activeColor);
     let emptyPins = Array(nbEmptyMoves).fill(<PinPlaceHolder move={new Move(props.currentMove.colors.length)}/>) ;
     let currentMove = <PinPlaceHolder activeColor={props.activeColor} handleChageGuessColor={props.handleChageGuessColor} pinType={pinTypes.color} guessResult={false} move={props.currentMove}/> ;
-    let moves = props.moves.map(move => <PinPlaceHolder guessResult={false} move={move}/>)
+    let moves = props.moves.map(move => <PinPlaceHolder guessResult={false} move={move}/>).reverse()
+    console.log(moves);
     return (
         <div className='guesses-list'>
             {emptyPins}

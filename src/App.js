@@ -7,39 +7,41 @@ import {Hueristic} from './game_brain/hueristic'
 import {GuessesResultList} from './components/GuessesResultList'
 import {GuessesList} from './components/GuessesList'
 import {ColorPicker, GuessColorPicker} from './components/ColorPicker'
-import {PinPlaceHolder} from './components/PinPlaceHolder'
+import {PinPlaceHolder, SuggistionPinPlaceHolder} from './components/PinPlaceHolder'
 import {Pin} from './components/Pin'
 import './components/styles/containers.css'
 
 
-let mv1 = new Move(4)
-mv1.colors[0] = 'red'
-mv1.colors[1] = 'yellow'
-mv1.colors[2] = 'white'
-mv1.colors[3] = 'black'
-mv1.results[0] = 2
-mv1.results[1] = 1
-mv1.results[2] = 1
 
-
-let mv2 = new Move(4)
-mv2.colors[0] = 'purple'
-mv2.colors[1] = 'blue'
-mv2.colors[2] = 'green'
-mv2.colors[3] = 'black'
-mv2.results[0] = 2
-mv2.results[1] = 1
-mv2.results[2] = 0
+const SLOTS = 5
 
 function App() {
-  const [guessesArray, setGuess] = useState(() => [new Guess(4)])
-  const [movesArray, setMoves] = useState([mv1, mv2])
-  const [currentMove, setCurrentMove] = useState(new Move(4))
-  const [stage, setStage] = useState('')
+  const [guessesArray, setGuessArray] = useState(() => [new Guess(SLOTS)])
+  const [movesArray, setMovesArray] = useState([])
+  const [currentMove, setCurrentMove] = useState(new Move(SLOTS))
   const [pickedColor, setPickedColor] = useState('blue')
   const [activeGuessType, setActiveGuessType] = useState(2)
+  const [suggistion, setSuggistion] = useState(Array(SLOTS).fill(''))
 
+  console.log(currentMove);
 
+  const submitMove = () => {
+    setMovesArray((moves) => {
+      let newMovesArray = [...moves]
+      console.log(currentMove);
+      newMovesArray.push(currentMove.clone())
+      return newMovesArray
+    })
+
+    const [allPosigleGuesses, colorsToChoose] = playRound(guessesArray, currentMove.colors, currentMove.results)
+
+    setCurrentMove(new Move(SLOTS))
+    setSuggistion(colorsToChoose)
+    setGuessArray((oldGuessesArray) => {
+      return [...allPosigleGuesses]
+    })
+
+  }
 
   const handlePickColor = (color) => {
     setPickedColor(color)
@@ -92,18 +94,18 @@ function App() {
 
     const variationObjsArr1 = GuessesGenerator.generatePossibilities(choice, results)
     console.log('variation objs', variationObjsArr1);
-    let allPosigleGuesses1 = GuessesGenerator.generateGuessesForAListOfGuesses(guessesArr, variationObjsArr1)
-    let highestScoreGuesses = Hueristic.getHighestScore(allPosigleGuesses1)
+    let allPosigleGuesses = GuessesGenerator.generateGuessesForAListOfGuesses(guessesArr, variationObjsArr1)
+    let highestScoreGuesses = Hueristic.getHighestScore(allPosigleGuesses)
     let colorMap = createColorMap(highestScoreGuesses)
-    let [mostAppGuess, colorsToChoose] = Hueristic.h1(allPosigleGuesses1)
-    console.log('after comparison with variations', allPosigleGuesses1)
+    let [mostAppGuess, colorsToChoose] = Hueristic.h1(allPosigleGuesses)
+    console.log('after comparison with variations', allPosigleGuesses)
     console.log('highest score guesses', highestScoreGuesses);
     console.log('color map: ', colorMap);
     console.log('most appropriate guess to chooose', mostAppGuess);
     console.log('colors to choose', colorsToChoose)
     console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=');
     console.log('\n\n\n\n')
-    return allPosigleGuesses1
+    return [allPosigleGuesses, colorsToChoose]
   }
 
 
@@ -174,8 +176,17 @@ function App() {
           <GuessesList activeColor={pickedColor} handleChageGuessColor={handleChageGuessColor} moves={movesArray} currentMove={currentMove} /> 
           <ColorPicker handlePickColor={handlePickColor} activeColor={pickedColor} />
           <GuessColorPicker handleGuessType={handleChangeGuessType} activeGuessType={activeGuessType} />
+        </div>
+
+        <div id='submition-container'>
+          <button className='submittion-button' onClick={submitMove}>Submit</button>
+        </div>
+
+        <div id='suggistion-container'>
+          <SuggistionPinPlaceHolder suggistion={suggistion} />
 
         </div>
+
       </div>
     </div>
   );

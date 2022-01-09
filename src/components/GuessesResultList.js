@@ -11,7 +11,7 @@ export function GuessesResultList(props) {
 
     let emptyPins = Array(nbEmptyMoves).fill(<PinPlaceHolder move={new Move(props.currentMove.colors.length)}/>) ;
     let currentMove = <PinPlaceHolder activeGuessType={props.activeGuessType} handleChageGuessResult={props.handleChageGuessResult} pinType={pinTypes.guessResult} guessResult={true} move={props.currentMove}/> ;
-    let moves = props.moves.map(move => <PinPlaceHolder guessResult={true} move={move}/>)
+    let moves = props.moves.map(move => <PinPlaceHolder guessResult={true} move={move}/>).reverse()
     return (
         <div className='guesses-results-list'>
             {emptyPins}

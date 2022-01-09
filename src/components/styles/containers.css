@@ -1,13 +1,17 @@
 body{
-    background-color: white;
+    background-color: rgb(172, 241, 172);
 }
 
 #main-container{
     margin: auto;
-    width: 630px;
-    height: 630px;
-    padding: 35px;
-    background-color: bisque;
+    width: 750px;
+    height: 750px;
+    padding: 50px 10px;
+    background-color: rgb(172, 241, 172);
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 100%;
+    grid-template-rows: 630px 10% 10%;
 }
 
 #game-container{
@@ -26,4 +30,24 @@ body{
     align-items: center;
     justify-items: stretch;
 
+}
+
+#submition-container{
+display: grid;
+grid-template-columns: 80%;
+grid-template-rows: 80%;
+justify-content: center;
+align-items: center;    
+}
+
+.submittion-button{
+    height: 100%;
+}
+
+#suggistion-container{
+    display: grid;
+    grid-template-columns: 40%;
+    grid-template-rows: 80%;
+    justify-content: center;
+    align-items: center;      
 }
