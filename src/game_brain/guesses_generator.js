@@ -18,9 +18,30 @@ export class Variation{
         const him = JSON.stringify(otherVariation.variation)+JSON.stringify(otherVariation.deletedColors)
         return my === him
     }
+
+    _equalToMove(move){
+        for (let index = 0; index < move.colors.length; index++) {
+            if(this.variation[index] !== move.colors[index]){
+                return false            
+            }
+        }
+        return true
+    }
+
+    alreadyInMovesArray(movesArray){
+        for(const move of movesArray){
+            let exsists = this._equalToMove(move)
+            console.log(`variation ${exsists}`, this);
+            if(exsists){
+                return true
+            }
+        }
+        return false
+    }
 }
 
 export class GuessesGenerator{
+
     static _getUnique(arr){
         const uniqueSet = new Set()
         const uniqueArr = [];
@@ -43,6 +64,19 @@ export class GuessesGenerator{
             }
         }
         return uniqueArr
+    }
+
+    static _removeDuplicatedVariations(variationsObjsArr, prevMovesArray){
+        let res = []
+        for(let variationObj of variationsObjsArr) {
+            if(!variationObj.alreadyInMovesArray(prevMovesArray)){
+                res.push(variationObj)
+            } else {
+                console.error('duplicated vaariation', variationObj.hash());
+            }
+        }
+        return res
+        
     }
 
     static _uniqueGuesses(guessesArr){
@@ -133,14 +167,16 @@ export class GuessesGenerator{
 
     }
 
-    static generatePossibilities(colors, rootGuess){
+    static generatePossibilities(colors, rootGuess, prevMovesArray){
         const allGuesses = this.generatePermOfResult(rootGuess)
         let allPossibities = []
         for(const guess of allGuesses){
             let pos = this.generatePossibilitiesWithOneGuess(colors, guess)
             allPossibities =  allPossibities.concat(...pos)
         }
-        return this._uniqueVariations(allPossibities)
+        let uniqueVariations = this._uniqueVariations(allPossibities)
+        let removedDups = this._removeDuplicatedVariations(uniqueVariations, prevMovesArray)
+        return removedDups
     }
 
     static generateGuessesForAListOfGuesses(guessesArr, variationsObjsArr){

@@ -40,13 +40,11 @@ export function Pin(props) {
     }
 
     function handleCurrentColors(){
-        console.log('from function', props.activeColor );
         props.handleChageGuessColor(props.pinIndex, props.activeColor)
     }
 
         
     const handleCurrentResults = () => {
-        console.log(props.handleChageGuessResult);
         props.handleChageGuessResult(props.pinIndex, props.activeGuessType)
     }
 

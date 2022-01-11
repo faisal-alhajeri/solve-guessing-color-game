@@ -14,7 +14,6 @@ import './components/styles/containers.css'
 
 
 const SLOTS = 5
-
 function App() {
   const [guessesArray, setGuessArray] = useState(() => [new Guess(SLOTS)])
   const [movesArray, setMovesArray] = useState([])
@@ -23,12 +22,10 @@ function App() {
   const [activeGuessType, setActiveGuessType] = useState(2)
   const [suggistion, setSuggistion] = useState(Array(SLOTS).fill(''))
 
-  console.log(currentMove);
 
   const submitMove = () => {
     setMovesArray((moves) => {
       let newMovesArray = [...moves]
-      console.log(currentMove);
       newMovesArray.push(currentMove.clone())
       return newMovesArray
     })
@@ -43,6 +40,16 @@ function App() {
 
   }
 
+  const copySuggistion = () => {
+    setCurrentMove((oldMove) => {
+      let clone = oldMove.clone()
+      for (let index = 0; index < suggistion.length; index++) {
+        clone.changeColor(index, suggistion[index])
+      }
+      return clone
+    })
+  }
+
   const handlePickColor = (color) => {
     setPickedColor(color)
   }
@@ -55,7 +62,6 @@ function App() {
     setCurrentMove((move) => {
       let newMv = move.clone()
       newMv.changeColor(index, color)
-      console.log(newMv);
       return newMv
     })
   }
@@ -89,22 +95,26 @@ function App() {
   
   }
     
-
-  const playRound = ( guessesArr, choice, results) => {
-
-    const variationObjsArr1 = GuessesGenerator.generatePossibilities(choice, results)
-    console.log('variation objs', variationObjsArr1);
-    let allPosigleGuesses = GuessesGenerator.generateGuessesForAListOfGuesses(guessesArr, variationObjsArr1)
-    let highestScoreGuesses = Hueristic.getHighestScore(allPosigleGuesses)
-    let colorMap = createColorMap(highestScoreGuesses)
-    let [mostAppGuess, colorsToChoose] = Hueristic.h1(allPosigleGuesses)
-    console.log('after comparison with variations', allPosigleGuesses)
-    console.log('highest score guesses', highestScoreGuesses);
+  const logData = (variationObjsArr ,allPosigleGuesses, highestScoreGuesses, colorMap, mostAppGuess, colorsToChoose) => {
+    console.log('variation objs', variationObjsArr.map(vr => vr.hash()));
+    console.log('after comparison with variations', allPosigleGuesses.map(gs => gs.guesses));
+    console.log('highest score guesses', highestScoreGuesses.map(gs => gs.guesses));
     console.log('color map: ', colorMap);
     console.log('most appropriate guess to chooose', mostAppGuess);
     console.log('colors to choose', colorsToChoose)
     console.log('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=');
     console.log('\n\n\n\n')
+  }
+
+  const playRound = ( guessesArr, choice, results) => {
+    console.log(`movesArray`, movesArray)
+    let movesToCompare = movesArray.concat(currentMove)
+    const variationObjsArr = GuessesGenerator.generatePossibilities(choice, results, movesToCompare)
+    let allPosigleGuesses = GuessesGenerator.generateGuessesForAListOfGuesses(guessesArr, variationObjsArr)
+    let highestScoreGuesses = Hueristic.getHighestScore(allPosigleGuesses)
+    let colorMap = createColorMap(highestScoreGuesses)
+    let [mostAppGuess, colorsToChoose] = Hueristic.h1(allPosigleGuesses)
+    logData(variationObjsArr, allPosigleGuesses, highestScoreGuesses, colorMap, mostAppGuess, colorsToChoose)
     return [allPosigleGuesses, colorsToChoose]
   }
 
@@ -180,7 +190,9 @@ function App() {
 
         <div id='submition-container'>
           <button className='submittion-button' onClick={submitMove}>Submit</button>
+          <button className='submittion-button' onClick={copySuggistion}>copy</button>
         </div>
+        
 
         <div id='suggistion-container'>
           <SuggistionPinPlaceHolder suggistion={suggistion} />

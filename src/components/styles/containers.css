@@ -5,13 +5,13 @@ body{
 #main-container{
     margin: auto;
     width: 750px;
-    height: 750px;
+    height: 800px;
     padding: 50px 10px;
     background-color: rgb(172, 241, 172);
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 100%;
-    grid-template-rows: 630px 10% 10%;
+    grid-template-rows: 80% 10% 10% 7%;
 }
 
 #game-container{
@@ -33,12 +33,14 @@ body{
 }
 
 #submition-container{
-display: grid;
-grid-template-columns: 80%;
-grid-template-rows: 80%;
-justify-content: center;
-align-items: center;    
+    display: grid;
+    grid-template-columns: 40% 40%;
+    grid-template-rows: 80%;
+    grid-gap: 10px;
+    justify-content: center;
+    align-items: center;    
 }
+
 
 .submittion-button{
     height: 100%;
