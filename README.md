@@ -1,4 +1,4 @@
-# <a href="https://solve-guessing-color-game.herokuapp.com/">Color Guessing Game</a>
+# <a href="https://solve-guessing-color-game.herokuapp.com/" target="_blank">Color Guessing Game</a>
 ## What is color guessing game
 color guessing game is a 2 player game where first player will choose 5 colors in a pattern and the second player will try to guess it.
 <br>
