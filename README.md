@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# color guessing game
+-----
+## What is color guessing game
+color guessing game is a 2 player game where first player will choose 5 colors in a pattern and the second player will try to guess it.
+<br>
+The game will be played in rounds. Every round player 2 will guess the pattern, and player 1 will replay to his guess with teh following rules:
+<br>
+1- <span style='color:red'>Red</span> dot for every color that have right place and right color
+<br>
+2- <span>white</span> dot for every color that have wrong place but right color
+<br>
+2- empty dot for every color that have wrong place and wrong color
+<br>
+then player 2 will make another guess depening on the response of player 1
+<br>
+for example:
+player 1 chooses his pattern as (Purple, Blue, Black, Purple, Green)<br>
+Player 2 guesse (Purple, White, White, Black, Yellow)<br>
+player 1 respond with (Red, White, empty, empty, empty)<br>
+Player 2 guess another guess <br>
+Player 1 responds with appropriate answer <br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-----
+## How is the application able to solve it?
+color guessing application will use AI to determine what is the best next guess, and will eliminate impossible guesses
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-----
+## how to use the application?
+Player 2 will be the only one using the application.<br>
+guess will be inserted in the right holes><br>
+guess result will be inserted in the left holes (leave empty if not Red or White)<br>
+Note: this game is best designed for labtops and desktops, where in mobiles it will have bad interface but still working logic.
