@@ -23,6 +23,17 @@ Player 1 responds with appropriate answer <br>
 ## How is the application able to solve it?
 color guessing application will use AI to determine what is the best next guess, and will eliminate impossible guesses
 
+## Runnig the application
+you can run the application by runnig these commands in termenal<br>
+```
+npm install
+```
+to install npm packages <br>
+```
+npm start
+```
+to run the actual program
+
 
 ## How to use the application?
 Player 2 will be the only one using the application.<br>
