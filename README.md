@@ -1,5 +1,4 @@
 # color guessing game
------
 ## What is color guessing game
 color guessing game is a 2 player game where first player will choose 5 colors in a pattern and the second player will try to guess it.
 <br>
@@ -20,11 +19,11 @@ player 1 respond with (Red, White, empty, empty, empty)<br>
 Player 2 guess another guess <br>
 Player 1 responds with appropriate answer <br>
 
------
+
 ## How is the application able to solve it?
 color guessing application will use AI to determine what is the best next guess, and will eliminate impossible guesses
 
------
+
 ## how to use the application?
 Player 2 will be the only one using the application.<br>
 guess will be inserted in the right holes><br>
