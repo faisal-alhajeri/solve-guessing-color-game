@@ -38,7 +38,10 @@ also you can run use the application with out deploting it on your own machine b
 
 
 ## How to use the application?
-Player 2 will be the only one using the application.<br>
-guess will be inserted in the right holes><br>
-guess result will be inserted in the left holes (leave empty if not Red or White)<br>
+<ul>
+  
+<li>Player 2 will be the only one using the application.<br>
+<li>guess will be inserted in the right holes.<br>
+<li>guess result will be inserted in the left holes (leave empty if not Red or White)<br>
+</ul>
 Note: this game is best designed for labtops and desktops, where in mobiles it will have bad interface but still working logic.
