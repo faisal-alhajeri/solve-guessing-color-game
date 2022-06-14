@@ -8,7 +8,7 @@ The game will be played in rounds. Every round player 2 will guess the pattern, 
 <br>
 2- <span>white</span> dot for every color that have wrong place but right color
 <br>
-2- empty dot for every color that have wrong place and wrong color
+3- empty dot for every color that have wrong place and wrong color
 <br>
 then player 2 will make another guess depening on the response of player 1
 <br>
