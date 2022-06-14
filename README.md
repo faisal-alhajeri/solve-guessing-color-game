@@ -32,7 +32,9 @@ to install npm packages <br>
 ```
 npm start
 ```
-to run the actual program
+to run the actual program<br><br>
+
+also you can run use the application with out deploting it on your own machine by wisitng <a href="https://solve-guessing-color-game.herokuapp.com/">this link</a>
 
 
 ## How to use the application?
